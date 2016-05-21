@@ -21,7 +21,11 @@
   },
   "homepage": "https://github.com/chikh/envelopresent#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "knex": "^0.11.3",
+    "lodash": "^4.12.0",
+    "node-uuid": "^1.4.7",
+    "pg": "^4.5.5"
   },
   "devDependencies": {
     "eslint": "^2.10.2",
