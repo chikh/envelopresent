@@ -1,4 +1,4 @@
-module.exports = (googleSheetsProvider) => {
+module.exports = (googleSheetsProvider, calculator) => {
   const router = require('express').Router();
 
   const googleSheetInfo = {
@@ -11,7 +11,8 @@ module.exports = (googleSheetsProvider) => {
 
   router.get('/', (req, res) => {
     googleSheet.sheets
-      .then(sheets => res.send(sheets[1]))
+      .then(sheets => calculator(sheets[1])
+      .then(sum => res.send('Сумма: ' + sum)))
       .catch(e => res.error(e));
   });
 

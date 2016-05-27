@@ -6,8 +6,10 @@ const envelopeRoute = require(path.join(__dirname, 'routes', 'envelope-view'));
 
 const googleSheetsProvider =
   require(path.join(__dirname, 'datasources', 'google-sheets'));
+const calculator =
+  require(path.join(__dirname, 'services', 'sheet-sum-calculator'));
 
-app.use('/envelope', envelopeRoute(googleSheetsProvider));
+app.use('/envelope', envelopeRoute(googleSheetsProvider, calculator));
 
 app.get('/', (req, res) => {
   res.redirect('/envelope');
