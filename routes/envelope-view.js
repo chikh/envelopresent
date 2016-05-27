@@ -1,5 +1,5 @@
 module.exports = (googleSheetsProvider) => {
-  const router = require('express').Router;
+  const router = require('express').Router();
 
   const googleSheetInfo = {
     email: process.env.GOOGLE_EMAIL,
@@ -9,10 +9,11 @@ module.exports = (googleSheetsProvider) => {
 
   const googleSheet = googleSheetsProvider(googleSheetInfo);
 
-  router.route('/envelope')
-    .get('/', (req, res) => {
-      googleSheet
-        .then(s => res.send(s.sheets[1]))
-        .catch(e => res.console.error(e));
-    });
+  router.get('/', (req, res) => {
+    googleSheet.sheets
+      .then(sheets => res.send(sheets[1]))
+      .catch(e => res.error(e));
+  });
+
+  return router;
 };

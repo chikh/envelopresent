@@ -7,11 +7,11 @@ const envelopeRoute = require(path.join(__dirname, 'routes', 'envelope-view'));
 const googleSheetsProvider =
   require(path.join(__dirname, 'datasources', 'google-sheets'));
 
+app.use('/envelope', envelopeRoute(googleSheetsProvider));
+
 app.get('/', (req, res) => {
   res.redirect('/envelope');
 });
-
-app.use(envelopeRoute(googleSheetsProvider));
 
 const port = process.env.PORT || 3000;
 
