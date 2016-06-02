@@ -21,8 +21,20 @@ module.exports = ({
 
   const sheets = sheetInfo.then(i => i.worksheets);
 
+  const cells =
+    ({ sheetNumber, minRow, maxRow = minRow, minCol, maxCol = minCol }) =>
+      sheets.then(sheets => new Promise((resolve, reject) => sheets[sheetNumber]
+        .getCells({
+          'min-row': minRow,
+          'max-row': maxRow,
+          'min-col': minCol,
+          'max-col': maxCol
+        }, (err, res) => err ? reject(err) : resolve(res))
+      ));
+
   return {
     sheetInfo,
-    sheets
+    sheets,
+    cells
   };
 };
