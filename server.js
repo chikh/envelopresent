@@ -17,7 +17,6 @@ const sheetDataMiner =
   require(path.join(__dirname, 'services', 'sheet-data-miner'))(
     googleSheetsProvider);
 
-
 app.use('/envelope', envelopeRoute(sheetDataMiner));
 
 app.get('/', (req, res) => {
